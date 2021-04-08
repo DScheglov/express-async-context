@@ -13,14 +13,6 @@ app.get('/trace-id', Context.consumer(
   (req, res) => ({ traceId }) => res.json({ traceId }),
 ));
 
-app.use(Context.consumer(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  (err, req, res, next) => ({ traceId }) => {
-    console.log(`${traceId}:`, err.message);
-    res.status(500).json({ error: err.message });
-  },
-));
-
 app.listen(8080, () => {
   console.log('Server is listening on port: 8080');
   console.log('Follow: http://localhost:8080/trace-id');
