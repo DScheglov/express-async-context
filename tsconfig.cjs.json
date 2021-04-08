@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "sourceMap": false,
+    "target": "es2017",
+    "outDir": "./lib",
+    "baseUrl": "./src",
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "experimentalDecorators": false,
+    "emitDecoratorMetadata": false,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": false,
+    "resolveJsonModule": true,
+    "removeComments": true,
+    "declaration": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true
+  },
+  "types": ["jest", "node"],
+  "lib": ["es5", "es6"],
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
