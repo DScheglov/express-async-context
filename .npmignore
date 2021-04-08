@@ -3,8 +3,7 @@
 !/lib
 !/esm
 !/src
-!/utils
-!index.js
-!index.d.ts
 
 /src/**/*.test.ts
+*.test.js
+*.test.d.ts
