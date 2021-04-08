@@ -16,6 +16,8 @@ npm install express-async-context
 
 ## Usage
 
+[Live Demo on Sandbox](https://codesandbox.io/s/zealous-wind-ioyix?fontsize=14&hidenavigation=1&initialpath=/trace-id&theme=dark&file=/src/index.ts)
+
 ```ts
 import express from 'express';
 import createContext from 'express-async-context';
@@ -49,7 +51,7 @@ chain of request handling in the `express`-application without mutation of the
 `request` or/and `response`.
 
 Under the hood library uses [AsyncLocalStorage](https://nodejs.org/api/async_hooks.html#async_hooks_class_asynclocalstorage)
-and based on the [thunk](https://wiki.haskell.org/Thunk#:~:text=A%20thunk%20is%20a%20value,thunk%20unless%20it%20has%20to.)-idiom
+and is based on the [thunk](https://wiki.haskell.org/Thunk#:~:text=A%20thunk%20is%20a%20value,thunk%20unless%20it%20has%20to.)-idiom
 that means calculation postponed until it will be provided with the context.
 
 ## API Reference
