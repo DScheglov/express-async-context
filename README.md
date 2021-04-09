@@ -54,6 +54,15 @@ Under the hood library uses [AsyncLocalStorage](https://nodejs.org/api/async_hoo
 and is based on the [thunk](https://wiki.haskell.org/Thunk#:~:text=A%20thunk%20is%20a%20value,thunk%20unless%20it%20has%20to.)-idiom
 that means calculation postponed until it will be provided with the context.
 
+The main benifit of context we can get when we use IoC-container as a context.
+To make such injection safe the static type-safe containers required, as instance:
+[true-di](https://github.com/DScheglov/true-di).
+
+
+See [Live DI Demo](https://codesandbox.io/s/github/DScheglov/true-di/tree/master/examples/getting-started?fontsize=14&hidenavigation=1&initialpath=/orders&module=/src/index.ts&theme=dark) on Sandbox
+
+![DI Through Context](di-through-context.drawio.png)
+
 ## API Reference
 
   - [function `createContext`](#function-createcontext)

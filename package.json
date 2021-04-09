@@ -55,5 +55,8 @@
   "bugs": {
     "url": "https://github.com/DScheglov/express-async-context/issues"
   },
-  "homepage": "https://github.com/DScheglov/express-async-context#readme"
+  "homepage": "https://github.com/DScheglov/express-async-context#readme",
+  "engines": {
+    "node": ">=12.17.0 <13.0.0 || >=13.10.0"
+  }
 }
