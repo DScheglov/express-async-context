@@ -1,6 +1,6 @@
 {
   "name": "express-async-context",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Context manager for Express routing lib",
   "main": "lib/index.js",
   "scripts": {
