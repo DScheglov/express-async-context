@@ -2,7 +2,7 @@ import {
   NextFunction, Response, Request, ErrorRequestHandler, RequestHandler,
 } from 'express';
 
-export type ContextFactory<T> = (req: Request) => T;
+export type ContextFactory<T> = (req: Request, res: Response) => T;
 
 export type Thunk<T, R = void> = (context: T, run: RunFn<T>) => R;
 export type RunFn<T> = <R>(fn: Thunk<T, R>) => R;

@@ -87,10 +87,10 @@ Accepts `contextFactory` function and creates a **ContextManager**.
 ### type `ContextFactory<T>`
 
 ```ts
-<T>(req: express.Request) => T;
+<T>(req: express.Request, res: express.Response) => T;
 ```
 
-The type describes function that accepts `express`.`Request` and returns **context data** of any type `T`.
+The type describes function that accepts `express`.`Request`, `express`.`Response` and returns **context data** of any type `T`.
 
 
 ### interface `ContextManager<T>`
