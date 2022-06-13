@@ -41,7 +41,7 @@ describe('createCotnext', () => {
     it('expect it calls contextFatory and passed the req to it', () => {
       provider(req, res, next);
       expect(contextFactory).toBeCalledTimes(1);
-      expect(contextFactory).toHaveBeenCalledWith(req);
+      expect(contextFactory).toHaveBeenCalledWith(req, res);
     });
 
     it('expect it calls holder.run and passed context, req and next to it', () => {
