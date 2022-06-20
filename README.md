@@ -1,7 +1,7 @@
 # express-async-context
 
 Zero-dependency context-provision for express-application based on the AsyncLocalStorage.
-
+[![example workflow](https://github.com/DScheglov/express-async-context/actions/workflows/run-tests.yml/badge.svg)](https://github.com/DScheglov/ express-async-context/actions/workflows/run-tests.yml)
 [![Coverage Status](https://coveralls.io/repos/github/DScheglov/express-async-context/badge.svg?branch=master)](https://coveralls.io/github/DScheglov/express-async-context?branch=master) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/DScheglov/express-async-context/blob/master/LICENSE) [![npm version](https://img.shields.io/npm/v/express-async-context.svg?style=flat-square)](https://www.npmjs.com/package/express-async-context) [![npm downloads](https://img.shields.io/npm/dm/express-async-context.svg?style=flat-square)](https://www.npmjs.com/package/express-async-context)
 
 
