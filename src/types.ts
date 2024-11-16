@@ -20,11 +20,7 @@ export type ContextHolderFactory<T> = () => ContextHolder<T>;
 export interface ContextManager<T> {
   provider: (req: Request, res: Response, next: NextFunction) => void;
   consumer: {
-    (handler: (req: Request, res: Response) => Thunk<T>): RequestHandler;
-    (handler: (req: Request, res: Response, next: NextFunction) => Thunk<T>): RequestHandler;
-    (handler: (err: any, req: Request, res: Response) => Thunk<T>): ErrorRequestHandler;
-    (
-      handler: (err: any, req: Request, res: Response, next: NextFunction) => Thunk<T>
-    ): ErrorRequestHandler;
+    (handler: HandlerThunk<T>): RequestHandler;
+    (handler: ErrorHandlerThunk<T>): ErrorRequestHandler;
   }
 }
