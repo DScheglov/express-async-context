@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "strict": true,
     "sourceMap": false,
     "target": "ES2017",
     "outDir": "./esm",

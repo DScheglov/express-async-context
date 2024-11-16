@@ -1,8 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 import createContext from './create-context';
-import { ContextHolder, RunFn } from './types';
+import {
+  ContextHolder, ErrorHandlerThunk, HandlerThunk, RunFn,
+} from './types';
 
-describe('createCotnext', () => {
+describe('createContext', () => {
   const createHolder = <T>(): ContextHolder<T> => ({
     run: jest.fn((data: T, req: Request, n: NextFunction) => n()),
     get: jest.fn(),
@@ -58,7 +60,7 @@ describe('createCotnext', () => {
       expect(
         consumer(
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          (req: Request, res: Response) => {},
+          ((req: Request, res: Response) => {}) as any,
         ),
       ).toHaveLength(3);
     });
@@ -67,7 +69,7 @@ describe('createCotnext', () => {
       expect(
         consumer(
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          (req: Request, res: Response, next: NextFunction) => {},
+          ((req: Request, res: Response, next: NextFunction) => {}) as any,
         ),
       ).toHaveLength(3);
     });
@@ -76,7 +78,7 @@ describe('createCotnext', () => {
       expect(
         consumer(
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          (err: Error, req: Request, res: Response, next: NextFunction) => {},
+          ((err: Error, req: Request, res: Response, next: NextFunction) => {}) as any,
         ),
       ).toHaveLength(4);
     });
@@ -138,7 +140,7 @@ describe('createCotnext', () => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         (_req: Request, _res: Response) => {},
       );
-      const dHandler = consumer(handlerThunk);
+      const dHandler = consumer(handlerThunk as any as HandlerThunk<typeof ctx>);
 
       dHandler(req, res, next);
       expect(handlerThunk).toHaveBeenCalledTimes(1);
@@ -164,7 +166,7 @@ describe('createCotnext', () => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         (_req: Request, _res: Response, _next: NextFunction) => {},
       );
-      const dHandler = consumer(handlerThunk);
+      const dHandler = consumer(handlerThunk as any as HandlerThunk<typeof ctx>);
 
       dHandler(req, res, next);
       expect(handlerThunk).toHaveBeenCalledTimes(1);
@@ -191,7 +193,7 @@ describe('createCotnext', () => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         (err: any, _req: Request, _res: Response, _next: NextFunction) => {},
       );
-      const dHandler = consumer(handlerThunk);
+      const dHandler = consumer(handlerThunk as any as ErrorHandlerThunk<typeof ctx>);
       const err = {};
       dHandler(err, req, res, next);
       expect(handlerThunk).toHaveBeenCalledTimes(1);
@@ -209,13 +211,13 @@ describe('createCotnext', () => {
     const res = {} as Response;
 
     it('calls function, passes context, itself and returns the function result', () => {
-      const handlerThunk = () => (__: typeof ctx, run: RunFn<typeof ctx>) => {
+      const handlerThunk = (() => (__: typeof ctx, run: RunFn<typeof ctx>) => {
         expect(run).toBeInstanceOf(Function);
         const fn = jest.fn(x => [x]);
         expect(run(fn)).toEqual([ctx]);
         expect(fn).toHaveBeenCalledTimes(1);
         expect(fn).toHaveBeenCalledWith(ctx, run);
-      };
+      }) as HandlerThunk<typeof ctx>;
       consumer(handlerThunk)(req, res, next);
     });
   });

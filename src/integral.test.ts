@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import request from 'supertest';
 import express, { NextFunction, Request, Response } from 'express';
 import alsContext from '.';
@@ -14,11 +15,11 @@ describe.each([
     .get('/trace-id', Context.consumer((req, res) => ({ traceId }) => res.json({ traceId })))
     .post('/error', (res, req, next) => next(new Error('Error')))
     .use(Context.consumer(
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      (err: Error, req: Request, res: Response, next: NextFunction) => ({ traceId }) => {
-        console.log(`${traceId}:`, err.message);
-        res.status(500).json({ error: err.message });
-      },
+      (err: any, req: Request, res: Response, next: NextFunction) =>
+        ({ traceId }: { traceId: string | string[] }) => {
+          console.log(`${traceId}:`, err.message);
+          res.status(500).json({ error: err.message });
+        },
     ));
 
   it('responds with 200 { traceId } on GET /trace-id', async () => {
